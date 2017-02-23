@@ -1,4 +1,17 @@
 <%= form_for(@project, html: {multipart: true}) do |f| %>
+
+<% if @project.errors.any? %>
+  <div class ="error_messages">
+    <h2>Form is invalid</h2>
+  <ul>
+    <% @project.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+
   <div>
     <%= f.label :title %>
     <%= f.text_field :title %>
