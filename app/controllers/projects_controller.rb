@@ -14,6 +14,16 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @pledges = @project.pledges
+    @result = 0
+    @pledges.each do |b|
+
+      @result = b.dollar_amount + @result
+
+
+
+    end
+
   end
 
   def new

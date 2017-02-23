@@ -17,10 +17,11 @@
   <body>
     <header class="site-header">
       <h1 class="logo"><%= link_to "Crowdfunder", projects_url %></h1>
-
       <nav class="site-nav">
         <% if current_user %>
-          <%= link_to "Logout", :logout, method: :post %> 
+          <%= link_to "Logout", :logout, method: :post %>
+          <h2 class="profile"><%= link_to "My Profile", user_path(current_user) %></h2>
+
 
           <%= form_tag(projects_path, :method => "get", id: "search-form") do %>
           <%= text_field_tag :search, params[:search], placeholder: "Search Projects" %>
