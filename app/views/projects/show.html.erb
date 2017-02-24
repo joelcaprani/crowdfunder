@@ -1,5 +1,14 @@
 <h1><%= @project.title %></h1>
 
+<% if @project.errors %>
+  <% @project.errors.each do |property, message| %>
+  <%= message %>
+  <%end%>
+
+<% end %>
+
+
+
 <time class="project-days-left">
   <%= icon('clock-o') %>
   <%= "#{time_ago_in_words(@project.end_date)} #{( @project.end_date > Time.now.utc ) ? 'remaining' : 'past deadline'}" %></time>
