@@ -8,9 +8,12 @@ class ProjectsController < ApplicationController
     @projects = Project.search(params[:search]).order("created_at DESC")
   else
     @projects = Project.all.order("created_at DESC")
+    end
   end
 
+
   end
+
 
 
 
@@ -21,12 +24,9 @@ class ProjectsController < ApplicationController
     @pledges.each do |b|
 
       @result = b.dollar_amount + @result
-
-
-
     end
-
   end
+
 
   def new
     @project = Project.new
@@ -35,17 +35,31 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+
     @project.user = current_user
+
 
     if @project.save
       redirect_to projects_url
-    else
+    @project = Project.create
+    else @project.valid?
+      # flash[:error] = "Please look over criteria"
       render :new
     end
-   end
+  end
+
+  #  @project = Project.create(params[:id])
+  #  if @project.save
+  #    render :json => @project
+  #  else
+  #    render :json => { :errors => @project.errors.full_messages }
+  #  end
+ end
+
 
   private
   def project_params
     params.require(:project).permit(:title, :description, :goal, :start_date, :end_date, :image, rewards_attributes: [:dollar_amount, :description])
+
+
   end
-end
