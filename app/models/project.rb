@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
   validates_presence_of :title, :description, :goal, :start_date, :end_date
 
   def self.search(search)
-  where("title LIKE ?", "%#{search}%")
+  where("title ILIKE ?", "%#{search}%")
   end
 
 end

@@ -1,1 +1,20 @@
-<h2><%= current_user.first_name %></h2>
+<h2><%= current_user.first_name %>'s Profile</h2>
+
+<h3>Your Projects</h3>
+			<% @user.projects.each do |project| %>
+				<p>
+					<%= link_to project.title, project_path %>
+				</p>
+			<% end %>
+
+
+
+  <h3>Your Pledges:</h3>
+
+   <ul>
+  	<% @user.pledges.each do |pledge| %>
+  	<li>
+  	You pledged $<%= pledge.dollar_amount %> to <%= link_to pledge.project.title, project_path(pledge.project.id) %>
+    Reward: <%= pledge.reward.description %>
+  	<% end %>
+   </ul>
