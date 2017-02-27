@@ -12,9 +12,6 @@ class ProjectsController < ApplicationController
   end
 
 
-  end
-
-
 
 
   def show
@@ -54,7 +51,6 @@ class ProjectsController < ApplicationController
   #  else
   #    render :json => { :errors => @project.errors.full_messages }
   #  end
- end
 
 
   private
@@ -63,3 +59,4 @@ class ProjectsController < ApplicationController
 
 
   end
+end

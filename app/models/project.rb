@@ -9,6 +9,7 @@ class Project < ActiveRecord::Base
 
   def self.search(search)
   where("title ILIKE ?", "%#{search}%")
+  end
 
   validate :start_date_in_future
   validate :end_date_after_start_date

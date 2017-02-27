@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130151807) do
+ActiveRecord::Schema.define(version: 20170222225404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "my_profiles", force: :cascade do |t|
+    t.string   "name"
+    t.string   "stringtotal_amount"
+    t.string   "integer"
+    t.string   "projects_backed"
+    t.string   "string"
+    t.string   "projects_owned"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
 
   create_table "pledges", force: :cascade do |t|
     t.integer  "user_id"
@@ -23,6 +34,15 @@ ActiveRecord::Schema.define(version: 20161130151807) do
     t.datetime "updated_at",    null: false
     t.index ["reward_id"], name: "index_pledges_on_reward_id", using: :btree
     t.index ["user_id"], name: "index_pledges_on_user_id", using: :btree
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "total_amount"
+    t.string   "projects_owned"
+    t.string   "projects_backed"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "projects", force: :cascade do |t|
